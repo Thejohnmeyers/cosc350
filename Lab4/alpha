@@ -1,0 +1,65 @@
+  John Meyers COSC    
+   This program takes input from a file and then put puts it into   seperate files
+   bases upon the type of char that goes into the buffer by reading byte by byte into the 
+   new files split into three categories alpha ASCCI chars  num intgers  and special charachters which is everything else
+     
+ include  stdio h 
+ include  unistd h 
+ include  fcntl h 
+ include  stdlib h 
+ include  sys types h     defines types used by sys stat h   
+ include  sys stat h     defines S IREAD   S IWRITE   
+
+int main int argc  char  argv    
+ int source  alph  num  oth 
+ char buf    
+ if argc      
+  printf  not enough arguments   
+  return    
+  
+ if  source   open argv     O RDONLY        
+  printf  error opening input file   
+  return    
+  
+ if  alph   open argv     O WRONLY        
+  printf  error opening output file  alpha   
+  return    
+  
+ if  num   open argv     O WRONLY        
+  printf  error opening output file  num   
+  return    
+  
+ if  oth   open argv     O WRONLY        
+  printf  erro opening output file  other   
+  return    
+  
+ while read source   buf          
+  if  buf         
+   write alph   buf     
+                        write num   buf     
+                        write oth   buf     
+   continue 
+   
+  if  buf      n   
+   write alph   buf     
+                        write num   buf     
+                        write oth   buf     
+                        continue 
+   
+  if   buf     a      buf     z       buf     A      buf     Z   
+   write alph   buf     
+   write num          
+   write oth          
+   
+  else if  buf            buf         
+   write alph          
+   write num   buf     
+   write oth          
+   
+  else 
+   write alph          
+   write num          
+   write oth   buf     
+   
+  
+ 
